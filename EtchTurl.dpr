@@ -2,7 +2,7 @@ program EtchTurl;
 
 uses
   Vcl.Forms,
-  uPrincipal in 'uPrincipal.pas' {Form1};
+  uPrincipal in 'view/uPrincipal.pas' {Form1};
 
 {$R *.res}
 
