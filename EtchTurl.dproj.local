@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/09/30 23:45:39.000.850,=C:\Users\lynka\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/10/01 06:55:11.591,=C:\Users\lynka\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/10/01 06:56:24.571,E:\Programação\Projetos\EtchTurl\trunk\uPrincipal.pas=C:\Users\lynka\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/10/01 06:56:24.571,E:\Programação\Projetos\EtchTurl\trunk\uPrincipal.dfm=C:\Users\lynka\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2018/10/01 06:56:32.876,E:\Programação\Projetos\EtchTurl\trunk\EtchTurl.dproj=C:\Users\lynka\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
