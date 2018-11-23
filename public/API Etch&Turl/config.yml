@@ -1,0 +1,18 @@
+logging:
+  level: INFO
+  loggers:
+    br.com.etcheturl: DEBUG
+
+database:
+  driverClass: org.postgresql.Driver
+  user: etch&turl
+  password: '#etch&turl#'
+  url: jdbc:postgresql://127.0.0.1:5432/etch&turl
+
+server:
+  applicationConnectors:
+    - type: http
+      port: 8010
+  adminConnectors:
+    - type: http
+      port: 8011
