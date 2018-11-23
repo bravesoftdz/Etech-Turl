@@ -34,7 +34,12 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
-    Button2: TButton;
+    btnEntrar: TImage;
+    lblBaixadeEstoque: TLabel;
+    btnEntrarClick: TImage;
+    btnCancelar: TImage;
+    btnCancelarClick: TImage;
+    Label6: TLabel;
   private
     { Private declarations }
   public
