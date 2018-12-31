@@ -21,25 +21,28 @@ uses
   dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
   dxSkinXmas2008Blue, Vcl.StdCtrls, cxTextEdit, cxMaskEdit, dxGDIPlusClasses,
-  Vcl.ExtCtrls, cxLabel, MaskUtils;
+  Vcl.ExtCtrls, cxLabel, MaskUtils, cxButtonEdit, cxCheckBox;
 
 type
   TfrmLogin = class(TForm)
-    Image1: TImage;
-    edtCNPJ: TcxMaskEdit;
-    edtLogin: TcxMaskEdit;
-    edtSenha: TcxMaskEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
+    pnlPrincipal: TPanel;
+    pnlBottom: TPanel;
+    lblBemVindo: TLabel;
+    Image2: TImage;
+    lblFacaSeuLogin: TLabel;
     btnEntrar: TImage;
-    lblBaixadeEstoque: TLabel;
-    btnEntrarClick: TImage;
-    btnCancelar: TImage;
-    btnCancelarClick: TImage;
-    Label6: TLabel;
+    lblCNPJ: TLabel;
+    lblLogin: TLabel;
+    lblSenha: TLabel;
+    lblCancelar: TLabel;
+    lblEntar: TLabel;
+    btnLogin: TcxButtonEdit;
+    cxButtonEdit2: TcxButtonEdit;
+    btnSenha: TcxButtonEdit;
+    cxCheckBox1: TcxCheckBox;
+    procedure lblCancelarClick(Sender: TObject);
+    procedure lblCancelarMouseEnter(Sender: TObject);
+    procedure lblCancelarMouseLeave(Sender: TObject);
   private
     { Private declarations }
   public
@@ -52,5 +55,20 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmLogin.lblCancelarClick(Sender: TObject);
+begin
+  Close();
+end;
+
+procedure TfrmLogin.lblCancelarMouseEnter(Sender: TObject);
+begin
+  lblCancelar.Font.Color := $004b5fee;
+end;
+
+procedure TfrmLogin.lblCancelarMouseLeave(Sender: TObject);
+begin
+  lblCancelar.Font.Color := $0081817F;
+end;
 
 end.

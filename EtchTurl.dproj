@@ -122,6 +122,8 @@
         </DCCReference>
         <DCCReference Include="model\Classe.Request.pas"/>
         <DCCReference Include="model\Classe.DiretorioWEB.pas"/>
+        <DCCReference Include="controller\Classe.LayoutUtils.pas"/>
+        <DCCReference Include="controller\interfaces.LayoutUtils.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -574,6 +576,7 @@
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>
+            <ModelSupport>False</ModelSupport>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>

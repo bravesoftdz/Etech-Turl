@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2018/10/01 06:56:24.000.571,C:\Users\lynka\Documents\Embarcadero\Studio\Projects\Unit1.dfm=E:\Programação\Projetos\EtchTurl\trunk\uPrincipal.dfm</Transaction>
-    <Transaction>2018/10/01 06:56:32.000.876,C:\Users\lynka\Documents\Embarcadero\Studio\Projects\Project1.dproj=E:\Programação\Projetos\EtchTurl\trunk\EtchTurl.dproj</Transaction>
-    <Transaction>2018/10/02 07:12:16.000.171,E:\Programação\Projetos\EtchTurl\trunk\view\uLogin.dfm=E:\Programação\Projetos\EtchTurl\trunk\Unit2.dfm</Transaction>
-    <Transaction>2018/10/23 05:45:58.000.808,E:\Programação\Projetos\EtchTurl\trunk\Unit1.dfm=E:\Programação\Projetos\EtchTurl\trunk\view\uBaixaEstoque.dfm</Transaction>
-    <Transaction>2018/11/22 06:51:37.000.517,E:\Programação\Projetos\EtchTurl\trunk\view\uFormBase.dfm=E:\Programação\Projetos\EtchTurl\trunk\Unit1.dfm</Transaction>
-    <Transaction>2018/11/22 07:16:41.000.216,E:\Programação\Projetos\EtchTurl\trunk\Unit1.dfm=E:\Programação\Projetos\EtchTurl\trunk\view\uFormEntradaNF.dfm</Transaction>
-    <Transaction>2018/11/22 07:22:32.000.419,E:\Programação\Projetos\EtchTurl\trunk\Unit1.dfm=E:\Programação\Projetos\EtchTurl\trunk\view\uFormBaixaEstoque.dfm</Transaction>
+    <Transaction>2018/10/01 06:56:24.000.571,E:\Programação\Projetos\EtchTurl\trunk\uPrincipal.dfm=C:\Users\lynka\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2018/10/01 06:56:32.000.876,E:\Programação\Projetos\EtchTurl\trunk\EtchTurl.dproj=C:\Users\lynka\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2018/10/02 07:12:16.000.171,E:\Programação\Projetos\EtchTurl\trunk\Unit2.dfm=E:\Programação\Projetos\EtchTurl\trunk\view\uLogin.dfm</Transaction>
+    <Transaction>2018/10/23 05:45:58.000.808,E:\Programação\Projetos\EtchTurl\trunk\view\uBaixaEstoque.dfm=E:\Programação\Projetos\EtchTurl\trunk\Unit1.dfm</Transaction>
+    <Transaction>2018/11/22 06:51:37.000.517,E:\Programação\Projetos\EtchTurl\trunk\Unit1.dfm=E:\Programação\Projetos\EtchTurl\trunk\view\uFormBase.dfm</Transaction>
+    <Transaction>2018/11/22 07:16:41.000.216,E:\Programação\Projetos\EtchTurl\trunk\view\uFormEntradaNF.dfm=E:\Programação\Projetos\EtchTurl\trunk\Unit1.dfm</Transaction>
+    <Transaction>2018/11/22 07:22:32.000.419,E:\Programação\Projetos\EtchTurl\trunk\view\uFormBaixaEstoque.dfm=E:\Programação\Projetos\EtchTurl\trunk\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>

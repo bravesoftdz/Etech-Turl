@@ -19,6 +19,11 @@ type
     imgLogo: TImage;
     TimerHora: TTimer;
     pnlBottom: TPanel;
+    Image1: TImage;
+    Image4: TImage;
+    lblRazaoSocial: TLabel;
+    lblUsuarioLogado: TLabel;
+    shpDivisoria: TShape;
     procedure lblSairMouseEnter(Sender: TObject);
     procedure lblSairMouseLeave(Sender: TObject);
     procedure lblSairClick(Sender: TObject);

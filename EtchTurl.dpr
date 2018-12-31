@@ -9,7 +9,9 @@ uses
   uFormEntradaNF in 'view\uFormEntradaNF.pas' {frmEntradaNF},
   uFormBaixaEstoque in 'view\uFormBaixaEstoque.pas' {frmBaixaEstoque},
   Classe.Request in 'model\Classe.Request.pas',
-  Classe.DiretorioWEB in 'model\Classe.DiretorioWEB.pas';
+  Classe.DiretorioWEB in 'model\Classe.DiretorioWEB.pas',
+  Classe.LayoutUtils in 'controller\Classe.LayoutUtils.pas',
+  interfaces.LayoutUtils in 'controller\interfaces.LayoutUtils.pas';
 
 {$R *.res}
 
@@ -17,9 +19,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmLogin, frmLogin);
-  Application.CreateForm(TfrmBase, frmBase);
-  Application.CreateForm(TfrmEntradaNF, frmEntradaNF);
-  Application.CreateForm(TfrmBaixaEstoque, frmBaixaEstoque);
   Application.Run;
 end.

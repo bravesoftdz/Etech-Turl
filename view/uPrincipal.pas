@@ -24,7 +24,7 @@ uses
   dxSkinXmas2008Blue, dxGDIPlusClasses, cxImage, Vcl.Menus, cxButtons, System.ImageList,
   Vcl.ImgList, FireDAC.Stan.StorageJSON, System.Sensors,
   System.Sensors.Components, Vcl.Buttons, uFormEntradaNF, IdBaseComponent,
-  IdComponent, IdTCPConnection, IdTCPClient, IdHTTP;
+  IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, interfaces.LayoutUtils, Classe.LayoutUtils;
 
 type
   TfrmPrincipal = class(TForm)
@@ -93,7 +93,9 @@ type
     procedure btnMestasdeComprasClicMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure btnGraficoComprasClicMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure btnEntradaNFClicClick(Sender: TObject);
+    procedure btnBaixaEstoqueClicClick(Sender: TObject);
   private
+    FFundoModal: iLayoutUtils;
     function DiadaSemana(const pDia: Integer): string;
   private
     procedure ExibirDataHora();
@@ -112,6 +114,21 @@ uses
   uLogin;
 
 {$R *.dfm}
+
+procedure TfrmPrincipal.btnBaixaEstoqueClicClick(Sender: TObject);
+var
+  frmLogin: TfrmLogin;
+begin
+  FFundoModal := TLayoutUtils.New();
+  frmLogin := TfrmLogin.Create(Self);
+  try
+    FFundoModal.EsmaecerFundoShow();
+    frmLogin.ShowModal();
+  finally
+    FFundoModal.EsmaecerFundoClose();
+    FreeAndNil(frmLogin);
+  end;
+end;
 
 procedure TfrmPrincipal.btnBaixaEstoqueClicMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
