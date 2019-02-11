@@ -3,6 +3,7 @@ unit uPrincipal;
 interface
 
 uses
+  uTESTE,
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.WinXPanels, Vcl.StdCtrls,
   Vcl.ExtCtrls, cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters,
@@ -24,7 +25,8 @@ uses
   dxSkinXmas2008Blue, dxGDIPlusClasses, cxImage, Vcl.Menus, cxButtons, System.ImageList,
   Vcl.ImgList, FireDAC.Stan.StorageJSON, System.Sensors,
   System.Sensors.Components, Vcl.Buttons, uFormEntradaNF, IdBaseComponent,
-  IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, interfaces.LayoutUtils, Classe.LayoutUtils;
+  IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, interfaces.LayoutUtils, Classe.LayoutUtils,
+  uFormBaixaEstoque;
 
 type
   TfrmPrincipal = class(TForm)
@@ -71,6 +73,7 @@ type
     Image1: TImage;
     Image4: TImage;
     lblRazaoSocial: TLabel;
+    Button1: TButton;
 
 
     procedure FormCreate(Sender: TObject);
@@ -94,6 +97,8 @@ type
     procedure btnGraficoComprasClicMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure btnEntradaNFClicClick(Sender: TObject);
     procedure btnBaixaEstoqueClicClick(Sender: TObject);
+    procedure btnMetasdeComprasClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     FFundoModal: iLayoutUtils;
     function DiadaSemana(const pDia: Integer): string;
@@ -117,16 +122,16 @@ uses
 
 procedure TfrmPrincipal.btnBaixaEstoqueClicClick(Sender: TObject);
 var
-  frmLogin: TfrmLogin;
+  frmBaixadeEstoque: TfrmBaixaEstoque;
 begin
   FFundoModal := TLayoutUtils.New();
-  frmLogin := TfrmLogin.Create(Self);
+  frmBaixadeEstoque := TfrmBaixaEstoque.Create(Self);
   try
     FFundoModal.EsmaecerFundoShow();
-    frmLogin.ShowModal();
+    frmBaixadeEstoque.ShowModal();
   finally
     FFundoModal.EsmaecerFundoClose();
-    FreeAndNil(frmLogin);
+    FreeAndNil(frmBaixadeEstoque);
   end;
 end;
 
@@ -210,6 +215,31 @@ end;
 procedure TfrmPrincipal.btnMestasdeComprasClicMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   SoltarClickBotao(btnMestasdeComprasClic, btnMetasdeCompras);
+end;
+
+procedure TfrmPrincipal.btnMetasdeComprasClick(Sender: TObject);
+var
+  frmLogin: TfrmLogin;
+begin
+  FFundoModal := TLayoutUtils.New();
+  frmLogin := TfrmLogin.Create(Self);
+  try
+    FFundoModal.EsmaecerFundoShow();
+    frmLogin.ShowModal();
+  finally
+    FFundoModal.EsmaecerFundoClose();
+    FreeAndNil(frmLogin);
+  end;
+end;
+
+procedure TfrmPrincipal.Button1Click(Sender: TObject);
+begin
+  Form1 := TForm1.Create(nil);
+  try
+    Form1.ShowModal();
+  finally
+    FreeAndNil(Form1);
+  end;
 end;
 
 procedure TfrmPrincipal.ClicarBotao(const pBotaoClick, pBotao: TImage);

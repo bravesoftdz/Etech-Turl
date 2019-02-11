@@ -1,6 +1,9 @@
 inherited frmEntradaNF: TfrmEntradaNF
+  KeyPreview = True
+  Position = poDesigned
   WindowState = wsMaximized
-  OnShow = FormShow
+  OnDestroy = FormDestroy
+  OnKeyPress = FormKeyPress
   PixelsPerInch = 96
   TextHeight = 13
   object gridEntradaNF: TcxGrid [3]
@@ -21,7 +24,7 @@ inherited frmEntradaNF: TfrmEntradaNF
     LookAndFeel.SkinName = 'DevExpressStyle'
     object gridEntradaNFDBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
-      DataController.DataSource = DataSource1
+      DataController.DataSource = dsNotasFiscais
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
@@ -30,26 +33,44 @@ inherited frmEntradaNF: TfrmEntradaNF
       OptionsView.GroupByBox = False
       object gridEntradaNFMes: TcxGridDBColumn
         Caption = 'M'#234's'
-        DataBinding.FieldName = 'Mes'
+        DataBinding.FieldName = 'nome'
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
         Width = 120
       end
       object gridEntradaNFDia: TcxGridDBColumn
-        DataBinding.FieldName = 'Dia'
+        Caption = 'Dia'
+        DataBinding.FieldName = 'idgrupo'
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
         MinWidth = 50
         Width = 50
       end
       object gridEntradaNFDGrupo: TcxGridDBColumn
-        DataBinding.FieldName = 'Grupo'
+        Caption = 'Grupo'
+        DataBinding.FieldName = 'ID'
+        PropertiesClassName = 'TcxLookupComboBoxProperties'
+        Properties.KeyFieldNames = 'ID'
+        Properties.ListColumns = <
+          item
+            FieldName = 'Nome'
+          end>
+        Properties.ListOptions.ShowHeader = False
+        Properties.ListSource = dsGrupo
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
         Width = 126
       end
       object gridEntradaNFFornecedor: TcxGridDBColumn
         DataBinding.FieldName = 'Fornecedor'
+        PropertiesClassName = 'TcxLookupComboBoxProperties'
+        Properties.KeyFieldNames = 'Id'
+        Properties.ListColumns = <
+          item
+            FieldName = 'Nome'
+          end>
+        Properties.ListOptions.ShowHeader = False
+        Properties.ListSource = dsFornecedor
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
         Width = 126
@@ -63,6 +84,13 @@ inherited frmEntradaNF: TfrmEntradaNF
       object gridEntradaNFUnMedida: TcxGridDBColumn
         Caption = 'UnMedida'
         DataBinding.FieldName = 'Un'
+        PropertiesClassName = 'TcxLookupComboBoxProperties'
+        Properties.KeyFieldNames = 'Id'
+        Properties.ListColumns = <
+          item
+            FieldName = 'Nome'
+          end>
+        Properties.ListSource = dsUnidade
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
         Width = 76
@@ -129,7 +157,7 @@ inherited frmEntradaNF: TfrmEntradaNF
     DesignSize = (
       1093
       99)
-    object btnEntradaNFClic: TImage
+    object imgBtnEntradaNF: TImage
       Left = 62
       Top = 1
       Width = 130
@@ -316,7 +344,7 @@ inherited frmEntradaNF: TfrmEntradaNF
         42950000000049454E44AE426082}
       Stretch = True
     end
-    object Image9: TImage
+    object imgBtnMetasCompras: TImage
       Left = 202
       Top = 1
       Width = 130
@@ -503,7 +531,7 @@ inherited frmEntradaNF: TfrmEntradaNF
         42950000000049454E44AE426082}
       Stretch = True
     end
-    object Image10: TImage
+    object imgBtnBaixaEstoque: TImage
       Left = 343
       Top = 1
       Width = 130
@@ -690,7 +718,7 @@ inherited frmEntradaNF: TfrmEntradaNF
         42950000000049454E44AE426082}
       Stretch = True
     end
-    object Image11: TImage
+    object imgBtnCotacao: TImage
       Left = 482
       Top = 1
       Width = 130
@@ -877,7 +905,7 @@ inherited frmEntradaNF: TfrmEntradaNF
         42950000000049454E44AE426082}
       Stretch = True
     end
-    object Image12: TImage
+    object imgBtnGraficoCompras: TImage
       Left = 622
       Top = 1
       Width = 130
@@ -1064,7 +1092,7 @@ inherited frmEntradaNF: TfrmEntradaNF
         42950000000049454E44AE426082}
       Stretch = True
     end
-    object Image13: TImage
+    object imgBtnFinanceiro: TImage
       Left = 762
       Top = 1
       Width = 130
@@ -1251,7 +1279,7 @@ inherited frmEntradaNF: TfrmEntradaNF
         42950000000049454E44AE426082}
       Stretch = True
     end
-    object Image14: TImage
+    object imgBtnGestaoCMV: TImage
       Left = 902
       Top = 1
       Width = 130
@@ -2102,7 +2130,7 @@ inherited frmEntradaNF: TfrmEntradaNF
       Font.Style = []
       ParentFont = False
     end
-    object Label1: TLabel
+    object lblMetasCompras: TLabel
       Left = 224
       Top = 10
       Width = 93
@@ -2117,7 +2145,7 @@ inherited frmEntradaNF: TfrmEntradaNF
       Font.Style = []
       ParentFont = False
     end
-    object Label2: TLabel
+    object lblBaixaEstoque: TLabel
       Left = 367
       Top = 10
       Width = 87
@@ -2132,7 +2160,7 @@ inherited frmEntradaNF: TfrmEntradaNF
       Font.Style = []
       ParentFont = False
     end
-    object Label3: TLabel
+    object lblCotacao: TLabel
       Left = 524
       Top = 10
       Width = 48
@@ -2147,7 +2175,7 @@ inherited frmEntradaNF: TfrmEntradaNF
       Font.Style = []
       ParentFont = False
     end
-    object Label4: TLabel
+    object lblGraficoCompras: TLabel
       Left = 638
       Top = 10
       Width = 99
@@ -2162,7 +2190,7 @@ inherited frmEntradaNF: TfrmEntradaNF
       Font.Style = []
       ParentFont = False
     end
-    object Label5: TLabel
+    object lblFinanceiro: TLabel
       Left = 802
       Top = 10
       Width = 59
@@ -2177,7 +2205,7 @@ inherited frmEntradaNF: TfrmEntradaNF
       Font.Style = []
       ParentFont = False
     end
-    object Label6: TLabel
+    object lblGestaoCMV: TLabel
       Left = 928
       Top = 10
       Width = 73
@@ -2194,50 +2222,16 @@ inherited frmEntradaNF: TfrmEntradaNF
     end
   end
   inherited TimerHora: TTimer
-    Left = 928
+    Left = 1048
     Top = 0
   end
-  object ClientDataSet1: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    Left = 864
-    object ClientDataSet1Mes: TStringField
-      FieldName = 'Mes'
-    end
-    object ClientDataSet1Dia: TIntegerField
-      FieldName = 'Dia'
-    end
-    object ClientDataSet1Grupo: TStringField
-      FieldName = 'Grupo'
-    end
-    object ClientDataSet1Fornecedor: TStringField
-      FieldName = 'Fornecedor'
-    end
-    object ClientDataSet1Produto: TStringField
-      FieldName = 'Produto'
-    end
-    object ClientDataSet1Un: TStringField
-      FieldName = 'Un'
-    end
-    object ClientDataSet1Quantidade: TFloatField
-      FieldName = 'Quantidade'
-    end
-    object ClientDataSet1Preco: TFloatField
-      FieldName = 'Preco'
-    end
-    object ClientDataSet1ValorTOtal: TFloatField
-      FieldName = 'ValorTOtal'
-    end
-    object ClientDataSet1Observacao: TStringField
-      FieldName = 'Observacao'
-    end
-  end
-  object DataSource1: TDataSource
-    DataSet = ClientDataSet1
-    Left = 784
+  object dsNotasFiscais: TDataSource
+    DataSet = FdMtblNotasFiscas
+    Left = 968
   end
   object cxStyleRepository1: TcxStyleRepository
-    Left = 728
+    Left = 1048
+    Top = 48
     PixelsPerInch = 96
     object cxStyle1: TcxStyle
       AssignedValues = [svColor, svFont]
@@ -2248,5 +2242,75 @@ inherited frmEntradaNF: TfrmEntradaNF
       Font.Name = 'Segoe UI'
       Font.Style = []
     end
+  end
+  object FdMtblNotasFiscas: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 888
+  end
+  object dsGrupo: TDataSource
+    DataSet = FdMtblGrupo
+    Left = 808
+  end
+  object FdMtblGrupo: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 752
+  end
+  object dsFornecedor: TDataSource
+    DataSet = FdMtblFornecedor
+    Left = 680
+  end
+  object FdMtblFornecedor: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 592
+  end
+  object FdMtblProduto: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 888
+    Top = 48
+  end
+  object dsProduto: TDataSource
+    DataSet = FdMtblProduto
+    Left = 968
+    Top = 48
+  end
+  object FdMtblUnidade: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 744
+    Top = 48
+  end
+  object dsUnidade: TDataSource
+    DataSet = FdMtblUnidade
+    Left = 808
+    Top = 48
   end
 end

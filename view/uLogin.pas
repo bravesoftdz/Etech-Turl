@@ -21,7 +21,9 @@ uses
   dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
   dxSkinXmas2008Blue, Vcl.StdCtrls, cxTextEdit, cxMaskEdit, dxGDIPlusClasses,
-  Vcl.ExtCtrls, cxLabel, MaskUtils, cxButtonEdit, cxCheckBox;
+  Vcl.ExtCtrls, cxLabel, MaskUtils, cxButtonEdit, cxCheckBox, Classe.Autenicacao,
+  Controller.Autenticacao, uDMRequest, Classe.RetornoAutenticacao,
+  Controller.RetornoAutenticacaoInterface;
 
 type
   TfrmLogin = class(TForm)
@@ -36,15 +38,21 @@ type
     lblSenha: TLabel;
     lblCancelar: TLabel;
     lblEntar: TLabel;
-    btnLogin: TcxButtonEdit;
-    cxButtonEdit2: TcxButtonEdit;
-    btnSenha: TcxButtonEdit;
+    edtLogin: TcxButtonEdit;
+    edtCNPJ: TcxButtonEdit;
+    edtSenha: TcxButtonEdit;
     cxCheckBox1: TcxCheckBox;
     procedure lblCancelarClick(Sender: TObject);
     procedure lblCancelarMouseEnter(Sender: TObject);
     procedure lblCancelarMouseLeave(Sender: TObject);
+    procedure btnEntrarClick(Sender: TObject);
   private
-    { Private declarations }
+    FAutenticacao: IAutenticacao;
+    FRetornoAutenticacao: IGETAutenticao;
+  private
+    procedure AlmentarDados();
+    procedure Autenticar();
+    function ValidareAutenticar(): Boolean;
   public
     { Public declarations }
   end;
@@ -54,11 +62,47 @@ var
 
 implementation
 
+uses
+  System.uJson, REST.Json.Types, REST.JsonReflect, REST.Json,
+  Data.DBXJSONReflect, System.NetEncoding;
+
 {$R *.dfm}
+
+procedure TfrmLogin.AlmentarDados();
+begin
+  FAutenticacao := TAtenticacao.New
+                                .Usuario(edtLogin.Text)
+                                  .Senha(edtSenha.Text);
+end;
+
+procedure TfrmLogin.Autenticar();
+var
+  lJSON,
+  lRetorno: string;
+  lAutRetorno: TGETAutenticacao;
+begin
+  if ValidareAutenticar then
+  begin
+    AlmentarDados();
+    lJSON := TJson.ObjectToJsonString(FAutenticacao as TAtenticacao);
+    lRetorno := DMRequest.AUTENTICAR(lJSON);
+
+    lAutRetorno := TJson.JsonToObject<TGETAutenticacao>(lRetorno);
+    if not (lAutRetorno.GETRetorno = EmptyStr) then
+      Self.ModalResult := mrOk;
+  end
+  else
+    Application.MessageBox('Preencha os campos de login e senha', 'Atenção', MB_OK+MB_ICONWARNING);
+end;
+
+procedure TfrmLogin.btnEntrarClick(Sender: TObject);
+begin
+  Autenticar();
+end;
 
 procedure TfrmLogin.lblCancelarClick(Sender: TObject);
 begin
-  Close();
+  Self.ModalResult := mrCancel;
 end;
 
 procedure TfrmLogin.lblCancelarMouseEnter(Sender: TObject);
@@ -69,6 +113,11 @@ end;
 procedure TfrmLogin.lblCancelarMouseLeave(Sender: TObject);
 begin
   lblCancelar.Font.Color := $0081817F;
+end;
+
+function TfrmLogin.ValidareAutenticar: Boolean;
+begin
+  Result := (not(edtLogin.Text = EmptyStr)) or (not(edtSenha.Text = EmptyStr));
 end;
 
 end.

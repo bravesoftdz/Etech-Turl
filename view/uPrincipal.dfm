@@ -2677,6 +2677,7 @@ object frmPrincipal: TfrmPrincipal
       BDB20000006CB5FF1F00F58255F4BB19164C0000000049454E44AE426082}
     Stretch = True
     Visible = False
+    OnClick = btnMetasdeComprasClick
   end
   object iconMetasdeCompras: TImage
     Left = 256
@@ -2787,6 +2788,7 @@ object frmPrincipal: TfrmPrincipal
       E467D329CF1EE8EFA654AE717A7C92952B7AFEDBB6AD5B9452F3DEBEC6468828
       84C47BFF9578CF81FFE70EFCEF009ADCF2B7B0CB3E710000000049454E44AE42
       6082}
+    OnClick = btnMetasdeComprasClick
     OnMouseDown = btnMestasdeComprasClicMouseDown
     OnMouseUp = btnMestasdeComprasClicMouseUp
   end
@@ -16730,6 +16732,15 @@ object frmPrincipal: TfrmPrincipal
       ParentFont = False
       OnClick = lblSairClick
     end
+  end
+  object Button1: TButton
+    Left = 505
+    Top = 192
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 2
+    OnClick = Button1Click
   end
   object TimerHora: TTimer
     OnTimer = TimerHoraTimer

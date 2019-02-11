@@ -3,7 +3,7 @@ unit Classe.DiretorioWEB;
 interface
 
 uses
-  SysUtils;
+  SysUtils, DMDados;
 
 type
   TServicoWeb = Class

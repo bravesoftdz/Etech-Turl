@@ -25,23 +25,25 @@ uses
   cxDataStorage, cxEdit, cxNavigator, Data.DB, cxDBData, cxGridLevel, cxClasses,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
   cxGrid, System.JSON, IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, REST.Response.Adapter,
-  Datasnap.DBClient, cxCurrencyEdit;
+  Datasnap.DBClient, cxCurrencyEdit, LibUtils, cxDBLookupComboBox,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, uDMRequest;
 
 type
   TfrmEntradaNF = class(TfrmBase)
     gridEntradaNFDBTableView1: TcxGridDBTableView;
     gridEntradaNFLevel1: TcxGridLevel;
     gridEntradaNF: TcxGrid;
-    ClientDataSet1: TClientDataSet;
     pnlEntradaNF: TPanel;
     pnl1: TPanel;
-    btnEntradaNFClic: TImage;
-    Image9: TImage;
-    Image10: TImage;
-    Image11: TImage;
-    Image12: TImage;
-    Image13: TImage;
-    Image14: TImage;
+    imgBtnEntradaNF: TImage;
+    imgBtnMetasCompras: TImage;
+    imgBtnBaixaEstoque: TImage;
+    imgBtnCotacao: TImage;
+    imgBtnGraficoCompras: TImage;
+    imgBtnFinanceiro: TImage;
+    imgBtnGestaoCMV: TImage;
     iconEntradaNF: TImage;
     iconBaixadeEstoque: TImage;
     iconGraficodeCompras: TImage;
@@ -50,13 +52,13 @@ type
     iconCotacao: TImage;
     iconMetasdeCompras: TImage;
     lblentradaNf: TLabel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    DataSource1: TDataSource;
+    lblMetasCompras: TLabel;
+    lblBaixaEstoque: TLabel;
+    lblCotacao: TLabel;
+    lblGraficoCompras: TLabel;
+    lblFinanceiro: TLabel;
+    lblGestaoCMV: TLabel;
+    dsNotasFiscais: TDataSource;
     gridEntradaNFMes: TcxGridDBColumn;
     gridEntradaNFDia: TcxGridDBColumn;
     gridEntradaNFDGrupo: TcxGridDBColumn;
@@ -67,22 +69,28 @@ type
     gridEntradaNFPreco: TcxGridDBColumn;
     gridEntradaNFValorTotal: TcxGridDBColumn;
     gridEntradaNFObservacao: TcxGridDBColumn;
-    ClientDataSet1Mes: TStringField;
-    ClientDataSet1Dia: TIntegerField;
-    ClientDataSet1Grupo: TStringField;
-    ClientDataSet1Fornecedor: TStringField;
-    ClientDataSet1Produto: TStringField;
-    ClientDataSet1Un: TStringField;
-    ClientDataSet1Quantidade: TFloatField;
-    ClientDataSet1Preco: TFloatField;
-    ClientDataSet1ValorTOtal: TFloatField;
-    ClientDataSet1Observacao: TStringField;
     cxStyleRepository1: TcxStyleRepository;
     cxStyle1: TcxStyle;
-    procedure FormShow(Sender: TObject);
+    FdMtblNotasFiscas: TFDMemTable;
+    dsGrupo: TDataSource;
+    FdMtblGrupo: TFDMemTable;
+    dsFornecedor: TDataSource;
+    FdMtblFornecedor: TFDMemTable;
+    FdMtblProduto: TFDMemTable;
+    dsProduto: TDataSource;
+    FdMtblUnidade: TFDMemTable;
+    dsUnidade: TDataSource;
+    procedure FormDestroy(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
-    procedure JSONtoDataSet(const pDataSet: TDataSet; pJSON: String);
-    procedure AlimentarDataSet();
+    FcdsGrupo: TClientDataSet;
+    FcdsProduto: TClientDataSet;
+    FcdsUnidade: TClientDataSet;
+    FcdsFornecedor: TClientDataSet;
+    FcdsNotasFiscais: TClientDataSet;
+  private
+    procedure CriarDataSet();
+    procedure DestroyDataSet();
   public
     { Public declarations }
   end;
@@ -99,144 +107,35 @@ uses
 
 { TfrmEntradaNF }
 
-procedure TfrmEntradaNF.AlimentarDataSet;
+procedure TfrmEntradaNF.CriarDataSet();
 begin
-  ClientDataSet1.CreateDataSet;
-  ClientDataSet1.Append;
-  ClientDataSet1.FieldByName('Mes').AsString := 'Dezembro';
-  ClientDataSet1.FieldByName('Dia').AsInteger := 20;
-  ClientDataSet1.FieldByName('Grupo').AsString := 'Hort Fruit';
-  ClientDataSet1.FieldByName('Fornecedor').AsString := 'Jao Legumes';
-  ClientDataSet1.FieldByName('Produto').AsString := 'Banana';
-  ClientDataSet1.FieldByName('Un').AsString := 'KG';
-  ClientDataSet1.FieldByName('Quantidade').AsFloat := 0.76;
-  ClientDataSet1.FieldByName('Preco').AsFloat := 3.20;
-  ClientDataSet1.FieldByName('ValorTotal').AsFloat := 1;
-  ClientDataSet1.FieldByName('Observacao').AsString := 'Banana madura';
-  ClientDataSet1.Post;
-
-    ClientDataSet1.Append;
-  ClientDataSet1.FieldByName('Mes').AsString := 'Dezembro';
-  ClientDataSet1.FieldByName('Dia').AsInteger := 20;
-  ClientDataSet1.FieldByName('Grupo').AsString := 'Hort Fruit';
-  ClientDataSet1.FieldByName('Fornecedor').AsString := 'Jao Legumes';
-  ClientDataSet1.FieldByName('Produto').AsString := 'Banana';
-  ClientDataSet1.FieldByName('Un').AsString := 'KG';
-  ClientDataSet1.FieldByName('Quantidade').AsFloat := 0.76;
-  ClientDataSet1.FieldByName('Preco').AsFloat := 3.20;
-  ClientDataSet1.FieldByName('ValorTotal').AsFloat := 1;
-  ClientDataSet1.FieldByName('Observacao').AsString := 'Banana madura';
-  ClientDataSet1.Post;
-
-    ClientDataSet1.Append;
-  ClientDataSet1.FieldByName('Mes').AsString := 'Dezembro';
-  ClientDataSet1.FieldByName('Dia').AsInteger := 20;
-  ClientDataSet1.FieldByName('Grupo').AsString := 'Hort Fruit';
-  ClientDataSet1.FieldByName('Fornecedor').AsString := 'Jao Legumes';
-  ClientDataSet1.FieldByName('Produto').AsString := 'Banana';
-  ClientDataSet1.FieldByName('Un').AsString := 'KG';
-  ClientDataSet1.FieldByName('Quantidade').AsFloat := 0.76;
-  ClientDataSet1.FieldByName('Preco').AsFloat := 3.20;
-  ClientDataSet1.FieldByName('ValorTotal').AsFloat := 1;
-  ClientDataSet1.FieldByName('Observacao').AsString := 'Banana madura';
-  ClientDataSet1.Post;
-
-    ClientDataSet1.Append;
-  ClientDataSet1.FieldByName('Mes').AsString := 'Dezembro';
-  ClientDataSet1.FieldByName('Dia').AsInteger := 20;
-  ClientDataSet1.FieldByName('Grupo').AsString := 'Hort Fruit';
-  ClientDataSet1.FieldByName('Fornecedor').AsString := 'Jao Legumes';
-  ClientDataSet1.FieldByName('Produto').AsString := 'Banana';
-  ClientDataSet1.FieldByName('Un').AsString := 'KG';
-  ClientDataSet1.FieldByName('Quantidade').AsFloat := 0.76;
-  ClientDataSet1.FieldByName('Preco').AsFloat := 3.20;
-  ClientDataSet1.FieldByName('ValorTotal').AsFloat := 1;
-  ClientDataSet1.FieldByName('Observacao').AsString := 'Banana madura';
-  ClientDataSet1.Post;
-
-    ClientDataSet1.Append;
-  ClientDataSet1.FieldByName('Mes').AsString := 'Dezembro';
-  ClientDataSet1.FieldByName('Dia').AsInteger := 20;
-  ClientDataSet1.FieldByName('Grupo').AsString := 'Hort Fruit';
-  ClientDataSet1.FieldByName('Fornecedor').AsString := 'Jao Legumes';
-  ClientDataSet1.FieldByName('Produto').AsString := 'Banana';
-  ClientDataSet1.FieldByName('Un').AsString := 'KG';
-  ClientDataSet1.FieldByName('Quantidade').AsFloat := 0.76;
-  ClientDataSet1.FieldByName('Preco').AsFloat := 3.20;
-  ClientDataSet1.FieldByName('ValorTotal').AsFloat := 1;
-  ClientDataSet1.FieldByName('Observacao').AsString := 'Banana madura';
-  ClientDataSet1.Post;
-
-    ClientDataSet1.Append;
-  ClientDataSet1.FieldByName('Mes').AsString := 'Dezembro';
-  ClientDataSet1.FieldByName('Dia').AsInteger := 20;
-  ClientDataSet1.FieldByName('Grupo').AsString := 'Hort Fruit';
-  ClientDataSet1.FieldByName('Fornecedor').AsString := 'Jao Legumes';
-  ClientDataSet1.FieldByName('Produto').AsString := 'Banana';
-  ClientDataSet1.FieldByName('Un').AsString := 'KG';
-  ClientDataSet1.FieldByName('Quantidade').AsFloat := 0.76;
-  ClientDataSet1.FieldByName('Preco').AsFloat := 3.20;
-  ClientDataSet1.FieldByName('ValorTotal').AsFloat := 1;
-  ClientDataSet1.FieldByName('Observacao').AsString := 'Banana madura';
-  ClientDataSet1.Post;
-
-    ClientDataSet1.Append;
-  ClientDataSet1.FieldByName('Mes').AsString := 'Dezembro';
-  ClientDataSet1.FieldByName('Dia').AsInteger := 20;
-  ClientDataSet1.FieldByName('Grupo').AsString := 'Hort Fruit';
-  ClientDataSet1.FieldByName('Fornecedor').AsString := 'Jao Legumes';
-  ClientDataSet1.FieldByName('Produto').AsString := 'Banana';
-  ClientDataSet1.FieldByName('Un').AsString := 'KG';
-  ClientDataSet1.FieldByName('Quantidade').AsFloat := 0.76;
-  ClientDataSet1.FieldByName('Preco').AsFloat := 3.20;
-  ClientDataSet1.FieldByName('ValorTotal').AsFloat := 1;
-  ClientDataSet1.FieldByName('Observacao').AsString := 'Banana madura';
-  ClientDataSet1.Post;
-
-    ClientDataSet1.Append;
-  ClientDataSet1.FieldByName('Mes').AsString := 'Dezembro';
-  ClientDataSet1.FieldByName('Dia').AsInteger := 20;
-  ClientDataSet1.FieldByName('Grupo').AsString := 'Hort Fruit';
-  ClientDataSet1.FieldByName('Fornecedor').AsString := 'Jao Legumes';
-  ClientDataSet1.FieldByName('Produto').AsString := 'Banana';
-  ClientDataSet1.FieldByName('Un').AsString := 'KG';
-  ClientDataSet1.FieldByName('Quantidade').AsFloat := 0.76;
-  ClientDataSet1.FieldByName('Preco').AsFloat := 3.20;
-  ClientDataSet1.FieldByName('ValorTotal').AsFloat := 1;
-  ClientDataSet1.FieldByName('Observacao').AsString := 'Banana madura';
-  ClientDataSet1.Post;
+  FcdsGrupo := TClientDataSet.Create(nil);
+  FcdsProduto := TClientDataSet.Create(nil);
+  FcdsUnidade := TClientDataSet.Create(nil);
+  FcdsFornecedor := TClientDataSet.Create(nil);
+  FcdsNotasFiscais := TClientDataSet.Create(nil);
 end;
 
-procedure TfrmEntradaNF.FormShow(Sender: TObject);
-var
-  lRequest: TRequest;
-  lRetorno: String;
+procedure TfrmEntradaNF.DestroyDataSet();
+begin
+  FreeAndNil(FcdsGrupo);
+  FreeAndNil(FcdsProduto);
+  FreeAndNil(FcdsUnidade);
+  FreeAndNil(FcdsFornecedor);
+  FreeAndNil(FcdsNotasFiscais);
+end;
+
+procedure TfrmEntradaNF.FormDestroy(Sender: TObject);
 begin
   inherited;
-  AlimentarDataSet;
-//  lRequest := TRequest.Create;
-//  lRetorno := lRequest.GET('getProdutos');
-//  JSONtoDataSet(ClientDataSet1, lRetorno);
+  DestroyDataSet();
 end;
 
-procedure TfrmEntradaNF.JSONtoDataSet(const pDataSet: TDataSet; pJSON: String);
-var
-  JSONObj: TJSONArray;
-  lConvert: TCustomJSONDataSetAdapter;
+procedure TfrmEntradaNF.FormKeyPress(Sender: TObject; var Key: Char);
 begin
-  if (pJSON = EmptyStr) then
-    Exit;
-
-  JSONObj := TJSONObject.ParseJSONValue(pJSON) as TJSONArray;
-  lConvert := TCustomJSONDataSetAdapter.Create(nil);
-
-  try
-    lConvert.Dataset := pDataSet;
-    lConvert.UpdateDataSet(JSONObj);
-  finally
-    lConvert.Free();
-    JSONObj.Free();
-  end;
+  inherited;
+  if Key = #27  then
+    Close();
 end;
 
 end.

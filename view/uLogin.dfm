@@ -1202,6 +1202,7 @@ object frmLogin: TfrmLogin
         9E63B7EC969722030000C031725D590000002EB53F1F00208AA71CD62F5A2500
         00000049454E44AE426082}
       Stretch = True
+      OnClick = btnEntrarClick
     end
     object lblCNPJ: TLabel
       Left = 21
@@ -1243,7 +1244,7 @@ object frmLogin: TfrmLogin
       ParentFont = False
     end
     object lblCancelar: TLabel
-      Left = 209
+      Left = 208
       Top = 417
       Width = 80
       Height = 25
@@ -1307,7 +1308,7 @@ object frmLogin: TfrmLogin
         ParentFont = False
       end
     end
-    object btnLogin: TcxButtonEdit
+    object edtLogin: TcxButtonEdit
       Left = 73
       Top = 206
       ParentFont = False
@@ -1316,6 +1317,7 @@ object frmLogin: TfrmLogin
         item
           ContentAlignment = taRightJustify
           Default = True
+          Enabled = False
           Glyph.Data = {
             36090000424D3609000000000000360000002800000018000000180000000100
             2000000000000009000000000000000000000000000000000000000000000000
@@ -1417,7 +1419,7 @@ object frmLogin: TfrmLogin
       TabOrder = 1
       Width = 393
     end
-    object cxButtonEdit2: TcxButtonEdit
+    object edtCNPJ: TcxButtonEdit
       Left = 73
       Top = 160
       ParentFont = False
@@ -1426,6 +1428,7 @@ object frmLogin: TfrmLogin
         item
           ContentAlignment = taRightJustify
           Default = True
+          Enabled = False
           Glyph.Data = {
             36090000424D3609000000000000360000002800000018000000180000000100
             2000000000000009000000000000000000000000000000000000000000000000
@@ -1527,7 +1530,7 @@ object frmLogin: TfrmLogin
       TabOrder = 0
       Width = 393
     end
-    object btnSenha: TcxButtonEdit
+    object edtSenha: TcxButtonEdit
       Left = 73
       Top = 252
       ParentFont = False
@@ -1536,6 +1539,7 @@ object frmLogin: TfrmLogin
         item
           ContentAlignment = taRightJustify
           Default = True
+          Enabled = False
           Glyph.Data = {
             36090000424D3609000000000000360000002800000018000000180000000100
             2000000000000009000000000000000000000000000000000000000000000000
@@ -1614,6 +1618,8 @@ object frmLogin: TfrmLogin
           Kind = bkGlyph
           LeftAlignment = True
         end>
+      Properties.EchoMode = eemPassword
+      Properties.PasswordChar = '*'
       Style.BorderColor = clGray
       Style.BorderStyle = ebsSingle
       Style.Font.Charset = DEFAULT_CHARSET
