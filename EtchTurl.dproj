@@ -124,6 +124,33 @@
         <DCCReference Include="model\Classe.DiretorioWEB.pas"/>
         <DCCReference Include="controller\Classe.LayoutUtils.pas"/>
         <DCCReference Include="controller\interfaces.LayoutUtils.pas"/>
+        <DCCReference Include="controller\LibUtils.pas"/>
+        <DCCReference Include="controller\DMDados.pas"/>
+        <DCCReference Include="controller\Data.DB.Helper.pas"/>
+        <DCCReference Include="controller\System.uJSON.pas"/>
+        <DCCReference Include="model\uDMRequest.pas">
+            <Form>DMRequest</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="uTESTE.pas">
+            <Form>Form1</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="controller\ControllerProdutoInterface.pas"/>
+        <DCCReference Include="controller\Classe.Produto.pas"/>
+        <DCCReference Include="controller\Controller.NotasFiscaisInterface.pas"/>
+        <DCCReference Include="controller\Classe.NotasFiscais.pas"/>
+        <DCCReference Include="controller\Controller.GrupoInterface.pas"/>
+        <DCCReference Include="controller\Classe.Grupo.pas"/>
+        <DCCReference Include="controller\Controller.UnidadeInterface.pas"/>
+        <DCCReference Include="controller\Classe.Unidade.pas"/>
+        <DCCReference Include="controller\Controller.FornecedorInterface.pas"/>
+        <DCCReference Include="controller\Classe.Fornecedor.pas"/>
+        <DCCReference Include="controller\Controller.Autenticacao.pas"/>
+        <DCCReference Include="controller\Classe.Autenicacao.pas"/>
+        <DCCReference Include="controller\Controller.RetornoAutenticacaoInterface.pas"/>
+        <DCCReference Include="controller\Classe.RetornoAutenticacao.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
