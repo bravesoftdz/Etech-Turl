@@ -19,7 +19,7 @@ type
     imgLogo: TImage;
     TimerHora: TTimer;
     pnlBottom: TPanel;
-    Image1: TImage;
+    imgUsuario: TImage;
     Image4: TImage;
     lblRazaoSocial: TLabel;
     lblUsuarioLogado: TLabel;

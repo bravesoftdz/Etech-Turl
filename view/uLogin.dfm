@@ -14,8 +14,11 @@ object frmLogin: TfrmLogin
   Font.Height = -11
   Font.Name = 'Segoe UI'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnCreate = FormCreate
+  OnKeyPress = FormKeyPress
   DesignSize = (
     512
     472)
@@ -1643,7 +1646,7 @@ object frmLogin: TfrmLogin
       TabOrder = 2
       Width = 393
     end
-    object cxCheckBox1: TcxCheckBox
+    object chkLembrarCredencial: TcxCheckBox
       Left = 73
       Top = 298
       Cursor = crHandPoint

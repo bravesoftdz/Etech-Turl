@@ -967,7 +967,6 @@ object frmBase: TfrmBase
     Color = 8487295
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 1024
     DesignSize = (
       1093
       97)
@@ -11907,11 +11906,10 @@ object frmBase: TfrmBase
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
-    ExplicitWidth = 1024
     DesignSize = (
       1093
       50)
-    object Image1: TImage
+    object imgUsuario: TImage
       Left = 1039
       Top = 5
       Width = 40

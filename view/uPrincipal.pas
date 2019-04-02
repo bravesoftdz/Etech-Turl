@@ -26,7 +26,7 @@ uses
   Vcl.ImgList, FireDAC.Stan.StorageJSON, System.Sensors,
   System.Sensors.Components, Vcl.Buttons, uFormEntradaNF, IdBaseComponent,
   IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, interfaces.LayoutUtils, Classe.LayoutUtils,
-  uFormBaixaEstoque;
+  uFormBaixaEstoque, LibUtils, uFrmSalvamento;
 
 type
   TfrmPrincipal = class(TForm)
@@ -69,10 +69,7 @@ type
     Image2: TImage;
     imgSombraTopo: TImage;
     shpDivisoria: TShape;
-    lblUsuarioLogado: TLabel;
-    Image1: TImage;
     Image4: TImage;
-    lblRazaoSocial: TLabel;
     Button1: TButton;
 
 
@@ -97,7 +94,7 @@ type
     procedure btnGraficoComprasClicMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure btnEntradaNFClicClick(Sender: TObject);
     procedure btnBaixaEstoqueClicClick(Sender: TObject);
-    procedure btnMetasdeComprasClick(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure Button1Click(Sender: TObject);
   private
     FFundoModal: iLayoutUtils;
@@ -116,7 +113,7 @@ var
 implementation
 
 uses
-  uLogin;
+  uLogin, uDMRequest;
 
 {$R *.dfm}
 
@@ -156,15 +153,14 @@ begin
 end;
 
 procedure TfrmPrincipal.btnEntradaNFClicClick(Sender: TObject);
-var
-  frmEntradaNF: TfrmEntradaNF;
 begin
-  frmEntradaNF := TfrmEntradaNF.Create(Self);
-  try
-    frmEntradaNF.ShowModal();
-  finally
-    FreeAndNil(frmEntradaNF);
-  end;
+  if (FEmpresa = EmptyStr) or (not FLembrarCredeniais) then
+  begin
+    if TfrmLogin.AbrirTelaLogin = mrOk then
+      TfrmEntradaNF.AbrirTela();
+  end
+  else
+    TfrmEntradaNF.AbrirTela();
 end;
 
 procedure TfrmPrincipal.btnEntradaNFClicMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -217,29 +213,9 @@ begin
   SoltarClickBotao(btnMestasdeComprasClic, btnMetasdeCompras);
 end;
 
-procedure TfrmPrincipal.btnMetasdeComprasClick(Sender: TObject);
-var
-  frmLogin: TfrmLogin;
-begin
-  FFundoModal := TLayoutUtils.New();
-  frmLogin := TfrmLogin.Create(Self);
-  try
-    FFundoModal.EsmaecerFundoShow();
-    frmLogin.ShowModal();
-  finally
-    FFundoModal.EsmaecerFundoClose();
-    FreeAndNil(frmLogin);
-  end;
-end;
-
 procedure TfrmPrincipal.Button1Click(Sender: TObject);
 begin
-  Form1 := TForm1.Create(nil);
-  try
-    Form1.ShowModal();
-  finally
-    FreeAndNil(Form1);
-  end;
+  TFrmSalvamento.Show;
 end;
 
 procedure TfrmPrincipal.ClicarBotao(const pBotaoClick, pBotao: TImage);
@@ -279,9 +255,16 @@ begin
   ExibirDataHora();
 end;
 
+procedure TfrmPrincipal.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #27 then
+    lblSairClick(Sender);
+end;
+
 procedure TfrmPrincipal.lblSairClick(Sender: TObject);
 begin
-  Close();
+  if Application.MessageBox('Deseja realmente sair do sistema?', 'Confirmação', MB_YESNO+MB_ICONQUESTION) = mrYes then
+    Close();
 end;
 
 procedure TfrmPrincipal.lblSairMouseEnter(Sender: TObject);

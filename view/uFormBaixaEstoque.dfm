@@ -21,7 +21,6 @@ inherited frmBaixaEstoque: TfrmBaixaEstoque
     TabOrder = 1
     LookAndFeel.NativeStyle = False
     LookAndFeel.SkinName = 'DevExpressStyle'
-    ExplicitTop = 255
     object gridBaixadeEstoqueDBBandedTableView1: TcxGridDBBandedTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = dsBaixaEstoque
@@ -106,36 +105,50 @@ inherited frmBaixaEstoque: TfrmBaixaEstoque
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana1Domingo: TcxGridDBBandedColumn
+        Caption = 'Domingo'
+        Width = 70
         Position.BandIndex = 1
         Position.ColIndex = 1
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana1Segunda: TcxGridDBBandedColumn
+        Caption = 'Segunda'
+        Width = 70
         Position.BandIndex = 1
         Position.ColIndex = 2
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana1Terca: TcxGridDBBandedColumn
+        Caption = 'Ter'#231'a'
+        Width = 70
         Position.BandIndex = 1
         Position.ColIndex = 3
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana1Quarta: TcxGridDBBandedColumn
+        Caption = 'Quarta'
+        Width = 70
         Position.BandIndex = 1
         Position.ColIndex = 4
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana1Quinta: TcxGridDBBandedColumn
+        Caption = 'Quinta'
+        Width = 70
         Position.BandIndex = 1
         Position.ColIndex = 5
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana1Sexta: TcxGridDBBandedColumn
+        Caption = 'Sexta'
+        Width = 70
         Position.BandIndex = 1
         Position.ColIndex = 6
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana1Sabado: TcxGridDBBandedColumn
+        Caption = 'S'#225'bado'
+        Width = 70
         Position.BandIndex = 1
         Position.ColIndex = 7
         Position.RowIndex = 0
@@ -165,36 +178,50 @@ inherited frmBaixaEstoque: TfrmBaixaEstoque
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana2Domingo: TcxGridDBBandedColumn
+        Caption = 'Domingo'
+        Width = 70
         Position.BandIndex = 2
         Position.ColIndex = 1
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana2Segunda: TcxGridDBBandedColumn
+        Caption = 'Segunda'
+        Width = 70
         Position.BandIndex = 2
         Position.ColIndex = 2
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana2Terca: TcxGridDBBandedColumn
+        Caption = 'Ter'#231'a'
+        Width = 70
         Position.BandIndex = 2
         Position.ColIndex = 3
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana2Quarta: TcxGridDBBandedColumn
+        Caption = 'Quarta'
+        Width = 70
         Position.BandIndex = 2
         Position.ColIndex = 4
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana2Quinta: TcxGridDBBandedColumn
+        Caption = 'Quinta'
+        Width = 70
         Position.BandIndex = 2
         Position.ColIndex = 5
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana2Sexta: TcxGridDBBandedColumn
+        Caption = 'Sexta'
+        Width = 70
         Position.BandIndex = 2
         Position.ColIndex = 6
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana2Sabado: TcxGridDBBandedColumn
+        Caption = 'S'#225'bado'
+        Width = 70
         Position.BandIndex = 2
         Position.ColIndex = 7
         Position.RowIndex = 0
@@ -224,36 +251,50 @@ inherited frmBaixaEstoque: TfrmBaixaEstoque
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana3Domingo: TcxGridDBBandedColumn
+        Caption = 'Domingo'
+        Width = 70
         Position.BandIndex = 3
         Position.ColIndex = 1
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana3Segunda: TcxGridDBBandedColumn
+        Caption = 'Segunda'
+        Width = 70
         Position.BandIndex = 3
         Position.ColIndex = 2
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana3Terca: TcxGridDBBandedColumn
+        Caption = 'Ter'#231'a'
+        Width = 70
         Position.BandIndex = 3
         Position.ColIndex = 3
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana3Quarta: TcxGridDBBandedColumn
+        Caption = 'Quarta'
+        Width = 70
         Position.BandIndex = 3
         Position.ColIndex = 4
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana3Quinta: TcxGridDBBandedColumn
+        Caption = 'Quinta'
+        Width = 70
         Position.BandIndex = 3
         Position.ColIndex = 5
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana3Sexta: TcxGridDBBandedColumn
+        Caption = 'Sexta'
+        Width = 70
         Position.BandIndex = 3
         Position.ColIndex = 6
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana3Sabado: TcxGridDBBandedColumn
+        Caption = 'S'#225'bado'
+        Width = 70
         Position.BandIndex = 3
         Position.ColIndex = 7
         Position.RowIndex = 0
@@ -283,36 +324,50 @@ inherited frmBaixaEstoque: TfrmBaixaEstoque
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana4Domingo: TcxGridDBBandedColumn
+        Caption = 'Domingo'
+        Width = 70
         Position.BandIndex = 4
         Position.ColIndex = 1
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana4Segunda: TcxGridDBBandedColumn
+        Caption = 'Segunda'
+        Width = 70
         Position.BandIndex = 4
         Position.ColIndex = 2
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana4Terca: TcxGridDBBandedColumn
+        Caption = 'Ter'#231'a'
+        Width = 70
         Position.BandIndex = 4
         Position.ColIndex = 3
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana4Quarta: TcxGridDBBandedColumn
+        Caption = 'Quarta'
+        Width = 70
         Position.BandIndex = 4
         Position.ColIndex = 4
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana4Quinta: TcxGridDBBandedColumn
+        Caption = 'Quinta'
+        Width = 70
         Position.BandIndex = 4
         Position.ColIndex = 5
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana4Sexta: TcxGridDBBandedColumn
+        Caption = 'Sexta'
+        Width = 70
         Position.BandIndex = 4
         Position.ColIndex = 6
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana4Sabado: TcxGridDBBandedColumn
+        Caption = 'S'#225'bado'
+        Width = 70
         Position.BandIndex = 4
         Position.ColIndex = 7
         Position.RowIndex = 0
@@ -342,46 +397,62 @@ inherited frmBaixaEstoque: TfrmBaixaEstoque
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana5Domingo: TcxGridDBBandedColumn
+        Caption = 'Domingo'
+        VisibleForEditForm = bFalse
+        Width = 70
         Position.BandIndex = 5
         Position.ColIndex = 1
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana5Segunda: TcxGridDBBandedColumn
+        Caption = 'Segunda'
+        VisibleForEditForm = bFalse
+        Width = 70
         Position.BandIndex = 5
         Position.ColIndex = 2
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana5Terca: TcxGridDBBandedColumn
+        Caption = 'Ter'#231'a'
+        VisibleForEditForm = bFalse
+        Width = 70
         Position.BandIndex = 5
         Position.ColIndex = 3
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana5Quarta: TcxGridDBBandedColumn
-        Caption = 'Consumo'
-        MinWidth = 100
-        Width = 100
+        Caption = 'Quarta'
+        MinWidth = 70
+        Width = 70
         Position.BandIndex = 5
         Position.ColIndex = 4
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana5Quinta: TcxGridDBBandedColumn
+        Caption = 'Quinta'
+        Position.BandIndex = 5
+        Position.ColIndex = 5
+        Position.RowIndex = 0
+      end
+      object gridColBaixadeEstoqueSemana5Sexta: TcxGridDBBandedColumn
+        Caption = 'Sexta'
+        Width = 70
         Position.BandIndex = 5
         Position.ColIndex = 6
         Position.RowIndex = 0
       end
-      object gridColBaixadeEstoqueSemana5Sexta: TcxGridDBBandedColumn
+      object gridColBaixadeEstoqueSemana5Sabado: TcxGridDBBandedColumn
+        Caption = 'S'#225'bado'
+        Width = 70
         Position.BandIndex = 5
         Position.ColIndex = 7
         Position.RowIndex = 0
       end
-      object gridColBaixadeEstoqueSemana5Sabado: TcxGridDBBandedColumn
+      object gridColBaixadeEstoqueSemana5Consumo: TcxGridDBBandedColumn
+        Caption = 'Consumo'
+        MinWidth = 100
         Position.BandIndex = 5
         Position.ColIndex = 8
-        Position.RowIndex = 0
-      end
-      object gridColBaixadeEstoqueSemana5Consumo: TcxGridDBBandedColumn
-        Position.BandIndex = 5
-        Position.ColIndex = 9
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana5SaldoFinal: TcxGridDBBandedColumn
@@ -389,52 +460,77 @@ inherited frmBaixaEstoque: TfrmBaixaEstoque
         MinWidth = 100
         Width = 100
         Position.BandIndex = 5
-        Position.ColIndex = 5
+        Position.ColIndex = 9
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana6Entrada: TcxGridDBBandedColumn
+        Caption = 'Entrada'
+        MinWidth = 100
         Position.BandIndex = 6
         Position.ColIndex = 0
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana6Domingo: TcxGridDBBandedColumn
+        Caption = 'Domingo'
+        Width = 70
         Position.BandIndex = 6
         Position.ColIndex = 1
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana6Segunda: TcxGridDBBandedColumn
+        Caption = 'Segunda'
+        Width = 70
         Position.BandIndex = 6
         Position.ColIndex = 2
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana6Terca: TcxGridDBBandedColumn
+        Caption = 'Ter'#231'a'
+        Width = 70
         Position.BandIndex = 6
         Position.ColIndex = 3
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana6Quarta: TcxGridDBBandedColumn
+        Caption = 'Quarta'
+        Width = 70
         Position.BandIndex = 6
         Position.ColIndex = 4
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana6Quinta: TcxGridDBBandedColumn
+        Caption = 'Quinta'
+        Width = 70
         Position.BandIndex = 6
         Position.ColIndex = 5
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueSemana6Sexta: TcxGridDBBandedColumn
+        Caption = 'Sexta'
+        Width = 70
         Position.BandIndex = 6
         Position.ColIndex = 6
         Position.RowIndex = 0
       end
-      object gridColBaixadeEstoqueSemana6Consumo: TcxGridDBBandedColumn
+      object gridColBaixadeEstoqueSemana6Sabado: TcxGridDBBandedColumn
+        Caption = 'S'#225'bado'
+        Width = 70
         Position.BandIndex = 6
         Position.ColIndex = 7
         Position.RowIndex = 0
       end
-      object gridColBaixadeEstoqueSemana6SaldoFinal: TcxGridDBBandedColumn
+      object gridColBaixadeEstoqueSemana6Consumo: TcxGridDBBandedColumn
+        Caption = 'Consumo'
+        Width = 100
         Position.BandIndex = 6
         Position.ColIndex = 8
+        Position.RowIndex = 0
+      end
+      object gridColBaixadeEstoqueSemana6SaldoFinal: TcxGridDBBandedColumn
+        Caption = 'Saldo Final'
+        Width = 100
+        Position.BandIndex = 6
+        Position.ColIndex = 9
         Position.RowIndex = 0
       end
       object gridColBaixadeEstoqueQuantidadeConsumoTotal: TcxGridDBBandedColumn

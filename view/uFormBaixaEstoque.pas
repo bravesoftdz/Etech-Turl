@@ -129,6 +129,7 @@ type
     cdsProdutoIdGrupo: TIntegerField;
     cdsGrupo: TClientDataSet;
     cdsBaixaEstoque: TClientDataSet;
+    gridColBaixadeEstoqueSemana6Sabado: TcxGridDBBandedColumn;
     procedure FormShow(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
@@ -138,6 +139,8 @@ type
   private
     procedure CreateDataSet();
     procedure DestroyDataSet();
+
+    procedure CreateFieldsBaixaEstoque();
 
     procedure AlimentarDataSet();
   public
@@ -170,6 +173,11 @@ begin
   FcdsGrupo := TClientDataSet.Create(nil);
 end;
 
+procedure TfrmBaixaEstoque.CreateFieldsBaixaEstoque;
+begin
+
+end;
+
 procedure TfrmBaixaEstoque.DestroyDataSet;
 begin
   if Assigned(FcdsBaixaEstoque) then
@@ -188,8 +196,19 @@ begin
 end;
 
 procedure TfrmBaixaEstoque.FormShow(Sender: TObject);
+var
+  lPrimeiroDia, lUltimoDia: Integer;
+  lDataPrimeiroDia, lDataUltimoDia: TDate;
 begin
   inherited;
+  lPrimeiroDia := StrToInt(TLibUtils.GETPrimeiroeUiltimoDiaMes(tpNumeroPrimeiroDia));
+  lUltimoDia := StrToInt(TLibUtils.GETPrimeiroeUiltimoDiaMes(tpNumeroUltimoDia));
+
+  lDataPrimeiroDia := StrToDate(TLibUtils.GETPrimeiroeUiltimoDiaMes(tpDataFormatoNacionalPrimeiroDia));
+  lDataUltimoDia := StrToDate(TLibUtils.GETPrimeiroeUiltimoDiaMes(tpDataFormatoNacionalUltimoDia));
+
+  ShowMessage(TLibUtils.GETDiadaSemana(lDataPrimeiroDia));
+
   AlimentarDataSet();
 end;
 

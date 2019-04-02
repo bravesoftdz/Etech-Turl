@@ -1,9 +1,12 @@
 inherited frmEntradaNF: TfrmEntradaNF
   KeyPreview = True
-  Position = poDesigned
+  Position = poDefault
   WindowState = wsMaximized
   OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
+  OnPaint = FormPaint
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object gridEntradaNF: TcxGrid [3]
@@ -23,6 +26,7 @@ inherited frmEntradaNF: TfrmEntradaNF
     LookAndFeel.NativeStyle = False
     LookAndFeel.SkinName = 'DevExpressStyle'
     object gridEntradaNFDBTableView1: TcxGridDBTableView
+      OnDblClick = gridEntradaNFDBTableView1DblClick
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = dsNotasFiscais
       DataController.Summary.DefaultGroupSummaryItems = <>
@@ -33,70 +37,138 @@ inherited frmEntradaNF: TfrmEntradaNF
       OptionsView.GroupByBox = False
       object gridEntradaNFMes: TcxGridDBColumn
         Caption = 'M'#234's'
-        DataBinding.FieldName = 'nome'
+        DataBinding.FieldName = 'Mes'
+        PropertiesClassName = 'TcxLookupComboBoxProperties'
+        Properties.DropDownListStyle = lsFixedList
+        Properties.KeyFieldNames = 'id'
+        Properties.ListColumns = <
+          item
+            FieldName = 'Mes'
+          end>
+        Properties.ListSource = dsMes
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
+        MinWidth = 120
+        Options.Editing = False
+        Options.Filtering = False
+        Options.FilteringWithFindPanel = False
+        Options.Focusing = False
+        Options.IgnoreTimeForFiltering = False
+        Options.IncSearch = False
+        Options.FilteringAddValueItems = False
+        Options.FilteringFilteredItemsList = False
+        Options.FilteringMRUItemsList = False
+        Options.FilteringPopup = False
+        Options.FilteringPopupMultiSelect = False
+        Options.GroupFooters = False
+        Options.Grouping = False
+        Options.HorzSizing = False
+        Options.Moving = False
         Width = 120
       end
       object gridEntradaNFDia: TcxGridDBColumn
-        Caption = 'Dia'
-        DataBinding.FieldName = 'idgrupo'
+        DataBinding.FieldName = 'Dia'
+        PropertiesClassName = 'TcxLookupComboBoxProperties'
+        Properties.Alignment.Horz = taCenter
+        Properties.DropDownListStyle = lsFixedList
+        Properties.KeyFieldNames = 'Dia'
+        Properties.ListColumns = <
+          item
+            FieldName = 'Dia'
+          end>
+        Properties.ListOptions.ShowHeader = False
+        Properties.ListSource = dsDiasMes
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
         MinWidth = 50
+        Options.Filtering = False
+        Options.FilteringWithFindPanel = False
+        Options.FilteringAddValueItems = False
+        Options.FilteringFilteredItemsList = False
+        Options.FilteringMRUItemsList = False
+        Options.FilteringPopup = False
+        Options.FilteringPopupMultiSelect = False
+        Options.ShowEditButtons = isebAlways
+        Options.GroupFooters = False
+        Options.Grouping = False
         Width = 50
       end
       object gridEntradaNFDGrupo: TcxGridDBColumn
-        Caption = 'Grupo'
-        DataBinding.FieldName = 'ID'
+        DataBinding.FieldName = 'Grupo'
         PropertiesClassName = 'TcxLookupComboBoxProperties'
-        Properties.KeyFieldNames = 'ID'
+        Properties.DropDownListStyle = lsEditList
+        Properties.ImmediatePost = True
+        Properties.KeyFieldNames = 'nome'
         Properties.ListColumns = <
           item
-            FieldName = 'Nome'
+            FieldName = 'nome'
           end>
         Properties.ListOptions.ShowHeader = False
         Properties.ListSource = dsGrupo
+        Properties.OnNewLookupDisplayText = gridEntradaNFDGrupoPropertiesNewLookupDisplayText
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
+        Options.ShowEditButtons = isebAlways
         Width = 126
       end
       object gridEntradaNFFornecedor: TcxGridDBColumn
         DataBinding.FieldName = 'Fornecedor'
         PropertiesClassName = 'TcxLookupComboBoxProperties'
-        Properties.KeyFieldNames = 'Id'
+        Properties.DropDownListStyle = lsEditList
+        Properties.KeyFieldNames = 'nome'
         Properties.ListColumns = <
           item
-            FieldName = 'Nome'
+            FieldName = 'nome'
           end>
         Properties.ListOptions.ShowHeader = False
         Properties.ListSource = dsFornecedor
+        Properties.OnNewLookupDisplayText = gridEntradaNFFornecedorPropertiesNewLookupDisplayText
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
+        Options.ShowEditButtons = isebAlways
         Width = 126
       end
       object gridEntradaNFProduto: TcxGridDBColumn
         DataBinding.FieldName = 'Produto'
+        PropertiesClassName = 'TcxLookupComboBoxProperties'
+        Properties.DropDownListStyle = lsEditList
+        Properties.KeyFieldNames = 'nome'
+        Properties.ListColumns = <
+          item
+            FieldName = 'nome'
+          end>
+        Properties.ListOptions.ShowHeader = False
+        Properties.ListSource = dsProduto
+        Properties.OnNewLookupDisplayText = gridEntradaNFProdutoPropertiesNewLookupDisplayText
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
+        Options.ShowEditButtons = isebAlways
         Width = 197
       end
       object gridEntradaNFUnMedida: TcxGridDBColumn
         Caption = 'UnMedida'
-        DataBinding.FieldName = 'Un'
+        DataBinding.FieldName = 'Unidade'
         PropertiesClassName = 'TcxLookupComboBoxProperties'
-        Properties.KeyFieldNames = 'Id'
+        Properties.DropDownListStyle = lsEditList
+        Properties.KeyFieldNames = 'nome'
         Properties.ListColumns = <
           item
-            FieldName = 'Nome'
+            FieldName = 'nome'
           end>
+        Properties.ListOptions.ShowHeader = False
         Properties.ListSource = dsUnidade
+        Properties.OnNewLookupDisplayText = gridEntradaNFUnMedidaPropertiesNewLookupDisplayText
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
+        Options.ShowEditButtons = isebAlways
         Width = 76
       end
       object gridEntradaNFQuantidade: TcxGridDBColumn
         DataBinding.FieldName = 'Quantidade'
+        PropertiesClassName = 'TcxCurrencyEditProperties'
+        Properties.Alignment.Horz = taCenter
+        Properties.DisplayFormat = '0.00;-,0.00'
+        Properties.OnValidate = gridEntradaNFQuantidadePropertiesValidate
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
         Width = 95
@@ -105,21 +177,36 @@ inherited frmEntradaNF: TfrmEntradaNF
         Caption = 'Pre'#231'o'
         DataBinding.FieldName = 'Preco'
         PropertiesClassName = 'TcxCurrencyEditProperties'
+        Properties.Alignment.Horz = taLeftJustify
+        Properties.OnValidate = gridEntradaNFPrecoPropertiesValidate
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
         Width = 82
       end
       object gridEntradaNFValorTotal: TcxGridDBColumn
         Caption = 'Valor Total'
-        DataBinding.FieldName = 'ValorTOtal'
+        DataBinding.FieldName = 'ValorTotal'
         PropertiesClassName = 'TcxCurrencyEditProperties'
+        Properties.Alignment.Horz = taLeftJustify
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
+        Options.Editing = False
+        Options.Filtering = False
+        Options.FilteringWithFindPanel = False
+        Options.Focusing = False
+        Options.IgnoreTimeForFiltering = False
+        Options.FilteringAddValueItems = False
+        Options.FilteringFilteredItemsList = False
+        Options.FilteringMRUItemsList = False
+        Options.FilteringPopup = False
+        Options.FilteringPopupMultiSelect = False
+        Options.GroupFooters = False
+        Options.Grouping = False
         Width = 81
       end
       object gridEntradaNFObservacao: TcxGridDBColumn
         Caption = 'NF e Observa'#231#245'es'
-        DataBinding.FieldName = 'Observacao'
+        DataBinding.FieldName = 'Observacoes'
         HeaderAlignmentHorz = taCenter
         HeaderGlyphAlignmentHorz = taCenter
         Width = 138
@@ -146,6 +233,55 @@ inherited frmEntradaNF: TfrmEntradaNF
     ParentBackground = False
     ParentFont = False
     TabOrder = 3
+    DesignSize = (
+      1093
+      41)
+    object imgIconSalvar: TImage
+      Left = 15
+      Top = 5
+      Width = 30
+      Height = 30
+      Cursor = crHandPoint
+      Picture.Data = {
+        0B546478504E47496D61676589504E470D0A1A0A0000000D4948445200000024
+        0000002408040000004B095013000000B5494441547801ECD2310E4040108561
+        375328F5141A8750AD668E8092A388C4193887333CA290C80BBB062A33E5FCF9
+        9A5DEF9F6B031F0662DDD4C694709DEC8C0929D751C8D7A0879C6CEF4041D6B3
+        F0851AA66E424CA92120790A92D721F757B340F6F9A117A116C5B2DD3D6842B0
+        DD034C7A28DE15B1161AA8197450434DA3836A6A6A1D345233EA2020DA15D1C7
+        CF6F0E3F64B56C7770350CCDF3222B8B78612BFFFA4836A697EC2A1B01812AED
+        194802A30000021A9B199B04EEBC0000000049454E44AE426082}
+      Stretch = True
+    end
+    object lblSalvar: TLabel
+      Left = 51
+      Top = 8
+      Width = 110
+      Height = 23
+      Cursor = crHandPoint
+      Caption = 'Ctrl+S - Salvar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindow
+      Font.Height = -17
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object cxCheckBox1: TcxCheckBox
+      Left = 879
+      Top = 4
+      Cursor = crHandPoint
+      Anchors = [akTop, akRight]
+      Caption = 'Salvamento Autom'#225'tico'
+      ParentFont = False
+      Style.Font.Charset = DEFAULT_CHARSET
+      Style.Font.Color = clWindow
+      Style.Font.Height = -17
+      Style.Font.Name = 'Segoe UI'
+      Style.Font.Style = []
+      Style.IsFontAssigned = True
+      TabOrder = 0
+    end
   end
   object pnl1: TPanel [5]
     Left = 0
@@ -2222,16 +2358,14 @@ inherited frmEntradaNF: TfrmEntradaNF
     end
   end
   inherited TimerHora: TTimer
-    Left = 1048
+    Left = 1056
     Top = 0
   end
   object dsNotasFiscais: TDataSource
-    DataSet = FdMtblNotasFiscas
-    Left = 968
+    Left = 1024
   end
   object cxStyleRepository1: TcxStyleRepository
-    Left = 1048
-    Top = 48
+    Left = 832
     PixelsPerInch = 96
     object cxStyle1: TcxStyle
       AssignedValues = [svColor, svFont]
@@ -2243,74 +2377,28 @@ inherited frmEntradaNF: TfrmEntradaNF
       Font.Style = []
     end
   end
-  object FdMtblNotasFiscas: TFDMemTable
-    FetchOptions.AssignedValues = [evMode]
-    FetchOptions.Mode = fmAll
-    ResourceOptions.AssignedValues = [rvSilentMode]
-    ResourceOptions.SilentMode = True
-    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
-    UpdateOptions.CheckRequired = False
-    UpdateOptions.AutoCommitUpdates = True
-    Left = 888
-  end
   object dsGrupo: TDataSource
-    DataSet = FdMtblGrupo
-    Left = 808
-  end
-  object FdMtblGrupo: TFDMemTable
-    FetchOptions.AssignedValues = [evMode]
-    FetchOptions.Mode = fmAll
-    ResourceOptions.AssignedValues = [rvSilentMode]
-    ResourceOptions.SilentMode = True
-    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
-    UpdateOptions.CheckRequired = False
-    UpdateOptions.AutoCommitUpdates = True
-    Left = 752
+    Left = 960
   end
   object dsFornecedor: TDataSource
-    DataSet = FdMtblFornecedor
-    Left = 680
-  end
-  object FdMtblFornecedor: TFDMemTable
-    FetchOptions.AssignedValues = [evMode]
-    FetchOptions.Mode = fmAll
-    ResourceOptions.AssignedValues = [rvSilentMode]
-    ResourceOptions.SilentMode = True
-    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
-    UpdateOptions.CheckRequired = False
-    UpdateOptions.AutoCommitUpdates = True
-    Left = 592
-  end
-  object FdMtblProduto: TFDMemTable
-    FetchOptions.AssignedValues = [evMode]
-    FetchOptions.Mode = fmAll
-    ResourceOptions.AssignedValues = [rvSilentMode]
-    ResourceOptions.SilentMode = True
-    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
-    UpdateOptions.CheckRequired = False
-    UpdateOptions.AutoCommitUpdates = True
-    Left = 888
-    Top = 48
+    Left = 896
   end
   object dsProduto: TDataSource
-    DataSet = FdMtblProduto
-    Left = 968
-    Top = 48
-  end
-  object FdMtblUnidade: TFDMemTable
-    FetchOptions.AssignedValues = [evMode]
-    FetchOptions.Mode = fmAll
-    ResourceOptions.AssignedValues = [rvSilentMode]
-    ResourceOptions.SilentMode = True
-    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
-    UpdateOptions.CheckRequired = False
-    UpdateOptions.AutoCommitUpdates = True
-    Left = 744
-    Top = 48
+    Left = 992
   end
   object dsUnidade: TDataSource
-    DataSet = FdMtblUnidade
-    Left = 808
-    Top = 48
+    Left = 928
+  end
+  object dsDiasMes: TDataSource
+    Left = 864
+  end
+  object cxLocalizer: TcxLocalizer
+    Active = True
+    FileName = 'E:\Programa'#231#227'o\Projetos\EtchTurl\trunk\public\Tradu'#231#227'oDev.ini'
+    Locale = 1046
+    Left = 800
+  end
+  object dsMes: TDataSource
+    Left = 768
   end
 end

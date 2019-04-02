@@ -23,7 +23,7 @@ uses
   dxSkinXmas2008Blue, Vcl.StdCtrls, cxTextEdit, cxMaskEdit, dxGDIPlusClasses,
   Vcl.ExtCtrls, cxLabel, MaskUtils, cxButtonEdit, cxCheckBox, Classe.Autenicacao,
   Controller.Autenticacao, uDMRequest, Classe.RetornoAutenticacao,
-  Controller.RetornoAutenticacaoInterface;
+  Controller.RetornoAutenticacaoInterface, interfaces.LayoutUtils, Classe.LayoutUtils;
 
 type
   TfrmLogin = class(TForm)
@@ -41,12 +41,15 @@ type
     edtLogin: TcxButtonEdit;
     edtCNPJ: TcxButtonEdit;
     edtSenha: TcxButtonEdit;
-    cxCheckBox1: TcxCheckBox;
+    chkLembrarCredencial: TcxCheckBox;
     procedure lblCancelarClick(Sender: TObject);
     procedure lblCancelarMouseEnter(Sender: TObject);
     procedure lblCancelarMouseLeave(Sender: TObject);
     procedure btnEntrarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
+    FLayout: iLayoutUtils;
     FAutenticacao: IAutenticacao;
     FRetornoAutenticacao: IGETAutenticao;
   private
@@ -55,6 +58,7 @@ type
     function ValidareAutenticar(): Boolean;
   public
     { Public declarations }
+    class function AbrirTelaLogin(): TModalResult;
   end;
 
 var
@@ -67,6 +71,18 @@ uses
   Data.DBXJSONReflect, System.NetEncoding;
 
 {$R *.dfm}
+
+class function TfrmLogin.AbrirTelaLogin: TModalResult;
+begin
+  frmLogin := TfrmLogin.Create(nil);
+  try
+    frmLogin.FLayout.EsmaecerFundoShow();
+    Result := frmLogin.ShowModal();
+  finally
+    frmLogin.FLayout.EsmaecerFundoClose();
+    FreeAndNil(frmLogin);
+  end;
+end;
 
 procedure TfrmLogin.AlmentarDados();
 begin
@@ -88,8 +104,14 @@ begin
     lRetorno := DMRequest.AUTENTICAR(lJSON);
 
     lAutRetorno := TJson.JsonToObject<TGETAutenticacao>(lRetorno);
-    if not (lAutRetorno.GETRetorno = EmptyStr) then
+    if not (lAutRetorno.GETSchema = EmptyStr) then
+    begin
+      FEmpresa := lAutRetorno.GETSchema;
+      FNomeEmpresa := lAutRetorno.GETEmpresa;
+      FNomeUsuario := lAutRetorno.GETUsuario;
+      FLembrarCredeniais := chkLembrarCredencial.Checked;
       Self.ModalResult := mrOk;
+    end;
   end
   else
     Application.MessageBox('Preencha os campos de login e senha', 'Atenção', MB_OK+MB_ICONWARNING);
@@ -98,6 +120,26 @@ end;
 procedure TfrmLogin.btnEntrarClick(Sender: TObject);
 begin
   Autenticar();
+end;
+
+procedure TfrmLogin.FormCreate(Sender: TObject);
+var
+  region : hrgn;
+begin
+  FLayout := TLayoutUtils.New();
+
+  region:= CreateRoundRectRgn(0, 0, width, height, 20, 20);
+  setwindowrgn(handle, region, true);
+
+  FLayout.ArredondarBordas(pnlPrincipal);
+end;
+
+procedure TfrmLogin.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  case Key of
+    #27: lblCancelarClick(Sender);
+    #13: btnEntrarClick(Sender);
+  end;
 end;
 
 procedure TfrmLogin.lblCancelarClick(Sender: TObject);
