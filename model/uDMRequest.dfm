@@ -26,20 +26,9 @@ object DMRequest: TDMRequest
     Top = 72
   end
   object RESTResponseDataSetAdapter: TRESTResponseDataSetAdapter
-    Dataset = FDMemTable
     FieldDefs = <>
     Response = RESTResponse
     Left = 168
     Top = 72
-  end
-  object FDMemTable: TFDMemTable
-    FetchOptions.AssignedValues = [evMode]
-    FetchOptions.Mode = fmAll
-    ResourceOptions.AssignedValues = [rvSilentMode]
-    ResourceOptions.SilentMode = True
-    UpdateOptions.AssignedValues = [uvCheckRequired]
-    UpdateOptions.CheckRequired = False
-    Left = 272
-    Top = 16
   end
 end
