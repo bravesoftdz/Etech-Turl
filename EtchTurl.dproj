@@ -138,7 +138,6 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="controller\ControllerProdutoInterface.pas"/>
-        <DCCReference Include="controller\Classe.Produto.pas"/>
         <DCCReference Include="controller\Controller.NotasFiscaisInterface.pas"/>
         <DCCReference Include="controller\Classe.NotasFiscais.pas"/>
         <DCCReference Include="controller\Controller.GrupoInterface.pas"/>
@@ -151,6 +150,11 @@
         <DCCReference Include="controller\Classe.Autenicacao.pas"/>
         <DCCReference Include="controller\Controller.RetornoAutenticacaoInterface.pas"/>
         <DCCReference Include="controller\Classe.RetornoAutenticacao.pas"/>
+        <DCCReference Include="controller\Classe.Produto.pas"/>
+        <DCCReference Include="view\uFrmSalvamento.pas">
+            <Form>FrmSalvamento</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

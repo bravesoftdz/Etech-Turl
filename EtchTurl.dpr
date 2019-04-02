@@ -19,7 +19,6 @@ uses
   uDMRequest in 'model\uDMRequest.pas' {DMRequest: TDataModule},
   uTESTE in 'uTESTE.pas' {Form1},
   ControllerProdutoInterface in 'controller\ControllerProdutoInterface.pas',
-  Classe.Produto in 'controller\Classe.Produto.pas',
   Controller.NotasFiscaisInterface in 'controller\Controller.NotasFiscaisInterface.pas',
   Classe.NotasFiscais in 'controller\Classe.NotasFiscais.pas',
   Controller.GrupoInterface in 'controller\Controller.GrupoInterface.pas',
@@ -31,7 +30,9 @@ uses
   Controller.Autenticacao in 'controller\Controller.Autenticacao.pas',
   Classe.Autenicacao in 'controller\Classe.Autenicacao.pas',
   Controller.RetornoAutenticacaoInterface in 'controller\Controller.RetornoAutenticacaoInterface.pas',
-  Classe.RetornoAutenticacao in 'controller\Classe.RetornoAutenticacao.pas';
+  Classe.RetornoAutenticacao in 'controller\Classe.RetornoAutenticacao.pas',
+  Classe.Produto in 'controller\Classe.Produto.pas',
+  uFrmSalvamento in 'view\uFrmSalvamento.pas' {FrmSalvamento};
 
 {$R *.res}
 
@@ -40,6 +41,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TDMRequest, DMRequest);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFrmSalvamento, FrmSalvamento);
   Application.Run;
 end.
