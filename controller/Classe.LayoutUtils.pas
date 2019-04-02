@@ -3,7 +3,7 @@ unit Classe.LayoutUtils;
 interface
 
 uses
-  interfaces.LayoutUtils, Vcl.Forms, Vcl.Graphics, System.SysUtils;
+  interfaces.LayoutUtils, Vcl.Forms, Vcl.Graphics, System.SysUtils, Winapi.Windows, Vcl.Controls, Winapi.Messages;
 
 type
 
@@ -14,6 +14,7 @@ type
   public
     procedure EsmaecerFundoShow();
     procedure EsmaecerFundoClose();
+    procedure ArredondarBordas(pComponent: TWinControl);
   public
     constructor Create();
     destructor Destroy(); override;
@@ -23,6 +24,20 @@ type
 implementation
 
 { TLayoutUtils }
+
+procedure TLayoutUtils.ArredondarBordas(pComponent: TWinControl);
+var
+   R: TRect;
+   Rgn: HRGN;
+begin
+  R := pComponent.ClientRect;
+  rgn := CreateRoundRectRgn(R.Left, R.Top, R.Right, R.Bottom, 10, 10) ;
+  pComponent.Perform(EM_GETRECT, 0, lParam(@r)) ;
+  InflateRect(r, - 4, - 4) ;
+  pComponent.Perform(EM_SETRECTNP, 0, lParam(@r)) ;
+  SetWindowRgn(pComponent.Handle, rgn, True) ;
+  pComponent.Invalidate;
+end;
 
 constructor TLayoutUtils.Create;
 begin

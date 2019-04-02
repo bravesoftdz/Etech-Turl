@@ -8,9 +8,12 @@ uses
 type
   TGrupo = class(TInterfacedObject, IGrupo)
   private
+    FId: Integer;
     FNome: string;
   public
+    function GETId(): Integer;
     function GETNome(): string;
+    function Id(const pValue: Integer): IGrupo;
     function Nome(const pValue: String): IGrupo;
 
     constructor Create();
@@ -39,9 +42,20 @@ begin
   inherited;
 end;
 
+function TGrupo.GETId: Integer;
+begin
+  Result := FId;
+end;
+
 function TGrupo.GETNome: string;
 begin
   Result := FNome;
+end;
+
+function TGrupo.Id(const pValue: Integer): IGrupo;
+begin
+  Result := Self;
+  FId := pValue;
 end;
 
 function TGrupo.Nome(const pValue: String): IGrupo;

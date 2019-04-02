@@ -9,9 +9,16 @@ type
   TGETAutenticacao = class(TInterfacedObject, IGETAutenticao)
   private
     FSchema: string;
+    FUsuario: string;
+    FEmpresa: string;
   public
-    function GETRetorno(): string;
-    function Retorno(const pValue: string): IGETAutenticao;
+    function GETSchema(): string;
+    function GETUsuario(): string;
+    function GETEmpresa(): string;
+
+    function Schema(const pValue: string): IGETAutenticao;
+    function Usuario(const pValue: string): IGETAutenticao;
+    function Empresa(const pValue: string): IGETAutenticao;
 
     constructor Create();
     destructor Destroy(); override;
@@ -39,15 +46,37 @@ begin
   inherited;
 end;
 
-function TGETAutenticacao.GETRetorno: string;
+function TGETAutenticacao.Schema(const pValue: string): IGETAutenticao;
+begin
+  Result := Self;
+  FSchema := pValue;
+end;
+
+function TGETAutenticacao.Usuario(const pValue: string): IGETAutenticao;
+begin
+  Result := Self;
+  FUsuario := pValue;
+end;
+
+function TGETAutenticacao.Empresa(const pValue: string): IGETAutenticao;
+begin
+  Result := Self;
+  FEmpresa := pValue;
+end;
+
+function TGETAutenticacao.GETEmpresa: string;
+begin
+  Result := FEmpresa;
+end;
+
+function TGETAutenticacao.GETSchema: string;
 begin
   Result := FSchema;
 end;
 
-function TGETAutenticacao.Retorno(const pValue: string): IGETAutenticao;
+function TGETAutenticacao.GETUsuario: string;
 begin
-  Result := Self;
-  FSchema := pValue;
+  Result := FUsuario;
 end;
 
 end.

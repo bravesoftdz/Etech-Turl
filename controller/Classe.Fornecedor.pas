@@ -8,12 +8,15 @@ uses
 type
   TFornecedor = class(TInterfacedObject, IFornecedor)
   private
+    FId: Integer;
     FNome: string;
-    FCNPJ: string;
+    FCnpj: string;
   public
+    function GETId(): Integer;
     function GETNome(): string;
     function GETCnpj(): string;
 
+    function Id(const pValue: Integer): IFornecedor;
     function Nome(const pValue: string): IFornecedor;
     function CNPJ(const pValue: string): IFornecedor;
 
@@ -46,7 +49,7 @@ end;
 function TFornecedor.CNPJ(const pValue: string): IFornecedor;
 begin
   Result := Self;
-  FCNPJ := pValue;
+  FCnpj := pValue;
 end;
 
 function TFornecedor.Nome(const pValue: string): IFornecedor;
@@ -55,9 +58,20 @@ begin
   FNome := pValue;
 end;
 
+function TFornecedor.Id(const pValue: Integer): IFornecedor;
+begin
+  Result := Self;
+  FId := pValue;
+end;
+
 function TFornecedor.GETCnpj: string;
 begin
-  Result := FCNPJ;
+  Result := FCnpj;
+end;
+
+function TFornecedor.GETId: Integer;
+begin
+  Result := FId;
 end;
 
 function TFornecedor.GETNome: string;

@@ -8,24 +8,29 @@ uses
 type
   TProduto = class(TInterfacedObject, IProduto)
   private
+    FId: Integer;
     FNome: string;
-    FIdGrupo: Integer;
   public
+    function GETId(): Integer;
     function GETNome(): string;
-    function GETIdGrupo(): Integer;
 
+    function Id(const pValue: Integer): IProduto;
     function Nome(const pValue: String): IProduto;
-    function IdGrupo(const pValue: Integer): IProduto;
+
+    class function New(): IProduto;
 
     constructor Create();
     destructor Destroy(); override;
-
-    class function New(): IProduto;
   end;
 
 implementation
 
-{ TProduto }
+{ TSetProduto }
+
+class function TProduto.New: IProduto;
+begin
+  Result := Self.Create;
+end;
 
 constructor TProduto.Create;
 begin
@@ -38,14 +43,9 @@ begin
   inherited;
 end;
 
-class function TProduto.New: IProduto;
+function TProduto.GETId: Integer;
 begin
-  Result := Self.Create;
-end;
-
-function TProduto.GETIdGrupo: Integer;
-begin
-  Result := FIdGrupo;
+  Result := FId;
 end;
 
 function TProduto.GETNome: string;
@@ -53,17 +53,17 @@ begin
   Result := FNome;
 end;
 
-function TProduto.IdGrupo(const pValue: Integer): IProduto;
+function TProduto.Id(const pValue: Integer): IProduto;
 begin
   Result := Self;
-  FIdGrupo := pValue;
+  FId := pValue;
 end;
+
 
 function TProduto.Nome(const pValue: String): IProduto;
 begin
   Result := Self;
   FNome := pValue;
 end;
-
 
 end.
